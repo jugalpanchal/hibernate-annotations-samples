@@ -15,6 +15,6 @@ public class createDbTest {
 		Fixture fixture = new Fixture();
 		Session session = fixture.getSession();
 
-		assertNull(session);
+		assertNotNull("Session is null.", session);
 	}
 }
