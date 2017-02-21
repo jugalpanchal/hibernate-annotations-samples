@@ -1,4 +1,4 @@
-package com.jugalpanchal.hibernate.infrastructure;
+package com.jugalpanchal.db.framework;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

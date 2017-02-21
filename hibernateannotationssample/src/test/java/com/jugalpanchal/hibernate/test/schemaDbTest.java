@@ -5,12 +5,12 @@ import static org.junit.Assert.*;
 import org.hibernate.Session;
 import org.junit.Test;
 
-import com.jugalpanchal.hibernate.infrastructure.Fixture;
+import com.jugalpanchal.db.framework.Fixture;
 
-public class createDbTest {
+public class schemaDbTest {
 
 	@Test
-	public void test() throws Exception {
+	public void createDbTest() throws Exception {
 		//It creates blank db.
 		Fixture fixture = new Fixture();
 		Session session = fixture.getSession();

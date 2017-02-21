@@ -1,15 +1,19 @@
-package com.jugalpanchal.hibernate.entities;
+package com.jugalpanchal.db.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "company")
-public class Company extends BaseEntity {
-	
+@Table(name = "car")
+public class Car extends BaseEntity {
+
 	@Column(name = "name")
 	private String name;
+
+	public Car() {
+		
+	}
 	
 	public String getName() {
 		return name;

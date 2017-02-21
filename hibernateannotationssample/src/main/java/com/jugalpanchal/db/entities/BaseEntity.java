@@ -1,4 +1,4 @@
-package com.jugalpanchal.hibernate.entities;
+package com.jugalpanchal.db.entities;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
