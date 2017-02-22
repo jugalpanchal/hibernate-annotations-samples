@@ -8,15 +8,14 @@ import org.hibernate.Session;
 import org.junit.Test;
 
 import com.jugalpanchal.db.entities.Car;
-import com.jugalpanchal.db.entities.Company;
 import com.jugalpanchal.db.framework.Fixture;
 import com.jugalpanchal.db.framework.StatefullUnitOfWork;
 import com.jugalpanchal.db.repositories.CarRepository;
 
-public class TransactionDbTester {
-	
+public class CarDbTransactionTester {
+
 	@Test
-	public void getCarTest() throws Exception {
+	public void getCarsTest() throws Exception {
 		List<?> cars = null;
 		Fixture fixture = null;
 		try {
@@ -32,36 +31,39 @@ public class TransactionDbTester {
 		} finally {
 			fixture.closeSession();
 		}
-		assertNotNull(cars);
+		assertNotNull("There is no car.", cars);
 	}
 	
 	@Test
-	public void addCompanyTest() throws Exception {
+	public void getCarTest() throws Exception {
 		
-		Company honda = new Company("Honda");
+		long carId = 1;//Input
 		
+		Car car = null;
 		Fixture fixture = null;
-		boolean isSaved = false;
 		try {
 			fixture = new Fixture();
-			Session session = fixture.getSession();
-			
-			StatefullUnitOfWork unitOfWork = new StatefullUnitOfWork(session);
-			session.save(honda);//saveOrUpdate
-			isSaved = unitOfWork.commit();
-			
+			Session session  = fixture.getSession();
+
+			CarRepository repository = new CarRepository(session);
+			car = repository.getCar(carId);
+
 		} catch (Exception ex) {
 			fixture.closeSessionFactory();
 			throw ex;
-		}finally {
+		} finally {
 			fixture.closeSession();
 		}
-		assertTrue("Company is not saved.", isSaved);
+		assertNotNull("There is no car.", car);
 	}
 	
 	@Test
-	public void modifiedCompanyTest() throws Exception {
+	public void addCarTest() throws Exception {
 		
+	}
+	
+	@Test
+	public void modifiedCarTest() throws Exception {
 		long carId = 1;
 		
 		boolean isUpdated;
@@ -86,22 +88,7 @@ public class TransactionDbTester {
 		} finally {
 			fixture.closeSession();
 		}
-		assertTrue("", isUpdated);
-	}
-	
-	@Test
-	public void deleteCompanyTest() throws Exception {
-		
-	}
-	
-	@Test
-	public void addCarTest() throws Exception {
-		
-	}
-	
-	@Test
-	public void modifiedCarTest() throws Exception {
-		
+		assertTrue("Car is not updated.", isUpdated);
 	}
 	
 	@Test
