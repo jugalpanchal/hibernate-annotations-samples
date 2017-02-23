@@ -33,7 +33,9 @@
 		<!-- create create-drop validate update -->
 		<property name="hbm2ddl.auto">create-drop</property>
 
-		<mapping class="com.jugalpanchal.db.entities.Car" />
-		<mapping class="com.jugalpanchal.db.entities.Company" />
+		<mapping class="com.jugalpanchal.db.entities.Car"/>
+		<mapping class="com.jugalpanchal.db.entities.Model"/>
+		<mapping class="com.jugalpanchal.db.entities.Company"/>
+		<mapping class="com.jugalpanchal.db.entities.User"/>
 	</session-factory>
 </hibernate-configuration>
