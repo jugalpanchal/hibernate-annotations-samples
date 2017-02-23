@@ -2,45 +2,99 @@ package com.jugalpanchal.db.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import com.jugalpanchal.db.contracts.IActivateEntity;
 import com.jugalpanchal.db.contracts.IPersistentEntity;
 import com.jugalpanchal.db.contracts.IUser;
 
 @MappedSuperclass
-public abstract class PersistentEntity implements IPersistentEntity {
-	
+public abstract class PersistentEntity implements IPersistentEntity, IActivateEntity {
+
 	@Id
 	@GeneratedValue
+	@Column(name = "id")
 	private long id;
 
+	/*@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "creation_date_time", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false, updatable = false)
+	private Date creationDate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "updation_date_time", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false, updatable = true)
+	private Date updationDate;*/
+	
+	/*@Column(name = "created_by_user_id")
+	private User createdByUser;
+	
+	@Column(name = "updated_by_user_id")
+	private User updatedByUser;*/
+	
+	@Column(name = "is_active")
+	private boolean isActive;
+	
 	public PersistentEntity() {
-		
+	}
+	
+	public PersistentEntity(//Date creationDate, Date updationDate, //IUser createdByUser, IUser updatedByUser,
+			boolean isActive) {
+		//this.creationDate = creationDate;
+		//this.updationDate = updationDate;
+		//this.createdByUser = createdByUser;
+		//this.updatedByUser = updatedByUser;
+		this.isActive = isActive;
 	}
 	
 	public long getId() {
 		return id;
 	}
 
-	@Override
-	public Date getCreationDate() {
-		return null;
+	/*public Date getCreationDate() {
+		return creationDate;
 	}
 
-	@Override
+	@PrePersist
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
 	public Date getUpdationDate() {
-		return null;
+		return updationDate;
 	}
 
-	@Override
-	public IUser getCreatedByUser() {
-		return null;
+	@PreUpdate
+	public void setUpdationDate(Date updationDate) {
+		this.updationDate = updationDate;
+	}*/
+
+	/*public IUser getCreatedByUser() {
+		return createdByUser;
 	}
 
-	@Override
-	public IUser getModifiedByUser() {
-		return null;
+	public void setCreatedByUser(IUser createdByUser) {
+		this.createdByUser = createdByUser;
+	}
+
+	public IUser getUpdatedByUser() {
+		return updatedByUser;
+	}
+
+	public void setUpdatedByUser(IUser updatedByUser) {
+		this.updatedByUser = updatedByUser;
+	}*/
+
+	public boolean isActive() {
+		return isActive;
+	}
+	
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 }
