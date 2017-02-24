@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.jugalpanchal.db.framework.Fixture;
 
-public class schemaDbTester {
+public class SchemaDbTester {
 
 	@Test
 	public void createDbTest() throws Exception {
