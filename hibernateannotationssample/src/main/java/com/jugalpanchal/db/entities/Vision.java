@@ -1,5 +1,7 @@
 package com.jugalpanchal.db.entities;
 
+import java.util.Date;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -11,7 +13,7 @@ public class Vision extends Caption {
 		super();
 	}
 
-	public Vision(User createdByUser, String value) {
-		super(createdByUser, value);
+	public Vision(User createdByUser, Date creationDate, String value) {
+		super(createdByUser, creationDate, value);
 	}
 }

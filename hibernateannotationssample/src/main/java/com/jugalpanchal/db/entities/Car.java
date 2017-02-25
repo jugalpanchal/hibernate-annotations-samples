@@ -1,5 +1,7 @@
 package com.jugalpanchal.db.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -21,8 +23,8 @@ public class Car extends PersistentEntity {
 		
 	}
 	
-	public Car(User createdByUser, String name, Model model) {
-		super(createdByUser);
+	public Car(User createdByUser, Date creationDate, String name, Model model) {
+		super(createdByUser, creationDate);
 		this.name = name;
 		this.model = model;
 		this.model.addCar(this);

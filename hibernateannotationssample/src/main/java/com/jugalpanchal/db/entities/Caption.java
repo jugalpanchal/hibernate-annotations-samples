@@ -1,5 +1,7 @@
 package com.jugalpanchal.db.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -20,8 +22,8 @@ public class Caption extends PersistentEntity {
 	{
 	}
 	
-	public Caption(User createdByUser, String value) {
-		super(createdByUser);
+	public Caption(User createdByUser, Date creationDate, String value) {
+		super(createdByUser, creationDate);
 		this.value = value;
 	}
 

@@ -1,5 +1,7 @@
 package com.jugalpanchal.db.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -21,8 +23,8 @@ public class MediaData extends PersistentEntity {
 		super();
 	}
 
-	public MediaData(User createdByUser, byte[] genericBlob, String type, String extension) {
-		super(createdByUser);
+	public MediaData(User createdByUser, Date creationDate, byte[] genericBlob, String type, String extension) {
+		super(createdByUser, creationDate);
 		this.type = type;
 		this.extension = extension;
 		this.genericBlob = genericBlob;

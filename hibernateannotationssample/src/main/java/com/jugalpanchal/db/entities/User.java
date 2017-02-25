@@ -1,5 +1,7 @@
 package com.jugalpanchal.db.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +20,8 @@ public class User extends PersistentEntity implements IUser {
 	public User() {
 	}
 	
-	public User(String name) {
+	public User(User createdByUser, Date creationDate, String name) {
+		super(createdByUser, creationDate);
 		this.name = name;
 	}
 	

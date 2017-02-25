@@ -2,6 +2,7 @@ package com.jugalpanchal.db.entities;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,8 +27,8 @@ public class Company extends PersistentEntity {
 	public Company() {
 	}
 	
-	public Company(User createdByUser, String name) {
-		super(createdByUser);
+	public Company(User createdByUser, Date creationDate, String name) {
+		super(createdByUser, creationDate);
 		this.name = name;
 	}
 	

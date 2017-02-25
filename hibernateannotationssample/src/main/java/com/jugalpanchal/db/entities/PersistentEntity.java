@@ -25,13 +25,13 @@ public class PersistentEntity implements IPersistentEntity, IActivateEntity {
 	@Column(name = "id")
 	private long id;
 
-	/*@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "creation_date_time", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false, updatable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "creation_date_time")//, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false, updatable = false)
 	private Date creationDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "updation_date_time", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false, updatable = true)
-	private Date updationDate;*/
+	@Column(name = "updation_date_time")//, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false, updatable = true)
+	private Date updationDate;
 	
 	@ManyToOne
 	@JoinColumn(name = "created_by_user_id")
@@ -48,32 +48,41 @@ public class PersistentEntity implements IPersistentEntity, IActivateEntity {
 		this.isActive = true;//Default active
 	}
 	
-	public PersistentEntity(User createdByUser) {
+	public PersistentEntity(User createdByUser, Date creationDate) {
 		this();
 		this.createdByUser = createdByUser;
+		this.creationDate = creationDate;
 	}
 	
 	public long getId() {
 		return id;
 	}
+	
+	/*@PrePersist
+	protected void onCreate() {
+		this.creationDate = new Date();
+	}
 
-	/*public Date getCreationDate() {
+	@PreUpdate
+	protected void onUpdate() {
+		this.updationDate = new Date();
+	}*/
+
+	public Date getCreationDate() {
 		return creationDate;
 	}
 
-	@PrePersist
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
-
+	
 	public Date getUpdationDate() {
 		return updationDate;
 	}
 
-	@PreUpdate
 	public void setUpdationDate(Date updationDate) {
 		this.updationDate = updationDate;
-	}*/
+	}
 
 	public IUser getCreatedByUser() {
 		return createdByUser;

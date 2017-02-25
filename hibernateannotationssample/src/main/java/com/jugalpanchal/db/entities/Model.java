@@ -2,6 +2,7 @@ package com.jugalpanchal.db.entities;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,8 +33,8 @@ public class Model extends PersistentEntity {
 	public Model() {
 	}
 	
-	public Model(User createdByUser, String name, Company company) {
-		super(createdByUser);
+	public Model(User createdByUser, Date creationDate, String name, Company company) {
+		super(createdByUser, creationDate);
 		this.name = name;
 		this.company = company;
 		this.company.addModel(this);
