@@ -2,10 +2,10 @@ package com.jugalpanchal.hibernate.test;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.jugalpanchal.db.entities.User;
@@ -13,6 +13,17 @@ import com.jugalpanchal.db.workflows.UserWorkflow;
 
 public class UserDbTester {
 
+	private static User USER;
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		
+		//There is one default user in db via initial_data.sql
+		UserWorkflow workflow = new UserWorkflow();
+		User user = workflow.get(1L);
+		USER = user;
+	}
+	
 	@Test
 	public void getUser() throws Exception {
 
@@ -32,23 +43,9 @@ public class UserDbTester {
 	@Test
 	public void saveUser() throws Exception {
 
-		User user = new User(null, new Date(), "Jugal");
+		User user = new User(UserDbTester.USER, new Date(), "Jugal");
 		UserWorkflow workflow = new UserWorkflow();
 		Boolean isSaved = workflow.saveByStatefull(user);
 		assertTrue("User is saved.", isSaved);
-	}
-	
-	@Test
-	public void saveUsers() throws Exception {
-
-		/*List<User> users = new ArrayList<User>() {{
-			add(new User(null, new Date(), "Jugal"));
-			add(new User(null, new Date(), "John"));
-			add(new User(null, new Date(), "Alan"));
-		}};
-		
-		UserWorkflow workflow = new UserWorkflow();
-		Boolean isSaved = workflow.saveByStatefull(users);
-		assertTrue("User is saved.", isSaved);*/
 	}
 }

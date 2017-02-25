@@ -14,55 +14,7 @@ import com.jugalpanchal.db.repositories.CarRepository;
 
 public class CarDbTransactionTester {
 
-	@Test
-	public void getCarsTest() throws Exception {
-		List<?> cars = null;
-		Fixture fixture = null;
-		try {
-			fixture = new Fixture();
-			Session session  = fixture.getSession();
-
-			CarRepository repository = new CarRepository(session);
-			cars = repository.getCars();
-
-		} catch (Exception ex) {
-			fixture.closeSessionFactory();
-			throw ex;
-		} finally {
-			fixture.closeSession();
-		}
-		assertNotNull("There is no car.", cars);
-	}
-	
-	@Test
-	public void getCarTest() throws Exception {
-		
-		long carId = 1;//Input
-		
-		Car car = null;
-		Fixture fixture = null;
-		try {
-			fixture = new Fixture();
-			Session session  = fixture.getSession();
-
-			CarRepository repository = new CarRepository(session);
-			car = repository.getCar(carId);
-
-		} catch (Exception ex) {
-			fixture.closeSessionFactory();
-			throw ex;
-		} finally {
-			fixture.closeSession();
-		}
-		assertNotNull("There is no car.", car);
-	}
-	
-	@Test
-	public void addCarTest() throws Exception {
-		
-	}
-	
-	@Test
+	/*@Test
 	public void modifiedCarTest() throws Exception {
 		long carId = 1;
 		
@@ -89,10 +41,5 @@ public class CarDbTransactionTester {
 			fixture.closeSession();
 		}
 		assertTrue("Car is not updated.", isUpdated);
-	}
-	
-	@Test
-	public void removeCarTest() throws Exception {
-		
-	}
+	}*/
 }

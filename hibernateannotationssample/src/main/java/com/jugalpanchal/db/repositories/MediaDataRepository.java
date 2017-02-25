@@ -3,8 +3,6 @@ package com.jugalpanchal.db.repositories;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.StatelessSession;
-
 import com.jugalpanchal.db.entities.MediaData;
 
 public class MediaDataRepository extends Repository<MediaData> {
@@ -13,11 +11,11 @@ public class MediaDataRepository extends Repository<MediaData> {
 		super(statefullSession);
 	}
 
-	public MediaData getMediaData(StatelessSession statelessSession, long id) {
+	public MediaData getMediaData(long id) {
 
 		MediaData mediaData = null;
 		try {
-			mediaData = (MediaData) statelessSession.createQuery("select m from MediaData m where m.id = :pId")
+			mediaData = (MediaData)this.statefullSession.createQuery("select m from MediaData m where m.id = :pId")
 					.setParameter("pId", id)
 					.uniqueResult();
 		} catch (Exception ex) {
@@ -26,8 +24,8 @@ public class MediaDataRepository extends Repository<MediaData> {
 		return mediaData;
 	}
 
-	public List<?> getMediaDataList() {
-		List<?> mediaDataList = null;
+	public List<MediaData> getMediaDataList() {
+		List<MediaData> mediaDataList = null;
 		try {
 			mediaDataList = this.statefullSession.createQuery("select m from  MediaData  m")
 					.list();

@@ -3,6 +3,7 @@ package com.jugalpanchal.hibernate.test;
 import static org.junit.Assert.*;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.StatelessSession;
@@ -18,75 +19,36 @@ import com.jugalpanchal.db.framework.Fixture;
 import com.jugalpanchal.db.framework.StatefullUnitOfWork;
 import com.jugalpanchal.db.framework.StatelessUnitOfWork;
 import com.jugalpanchal.db.repositories.UserRepository;
+import com.jugalpanchal.db.workflows.CompanyWorkflow;
+import com.jugalpanchal.db.workflows.UserWorkflow;
 
 public class CompanyDbTransactionTester {
-	
+
 	private static User USER;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		
-		User user = new User(null, new Date(),"Jugal");
-		
-		Fixture fixture = null;
-		boolean isSaved = false;
-		try {
-			fixture = new Fixture();
-			StatelessSession session = fixture.getStatelessSession();
-			
-			StatelessUnitOfWork unitOfWork = new StatelessUnitOfWork(session);
-			session.insert(user);
-			isSaved = unitOfWork.commit();
-			
-		} catch (Exception ex) {
-			fixture.closeSessionFactory();
-			throw ex;
-		}finally {
-			CompanyDbTransactionTester.USER = user;//Holds to tear down object.
-			fixture.closeSession();
-		}
-		assertTrue("User is not saved.", isSaved);
+		UserWorkflow workflow = new UserWorkflow();
+		USER = workflow.get(1L);
 	}
- 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-		
-		Fixture fixture = null;
-		boolean isDeleted = false;
-		try {
-			fixture = new Fixture();
-			Session session = fixture.getSession();
-			UserRepository repository = new UserRepository(session);
-			User user = repository.getUser(CompanyDbTransactionTester.USER.getId());
-			
-			StatefullUnitOfWork unitOfWork = new StatefullUnitOfWork(session);
-			session.delete(user);
-			isDeleted = unitOfWork.commit();
-			
-		} catch (Exception ex) {
-			fixture.closeSessionFactory();
-			throw ex;
-		}finally {
-			fixture.closeSession();
-		}
-		assertTrue("User is not deleted.", isDeleted);
+
+	@Test
+	public void getCompanyTest() throws Exception {
+		CompanyWorkflow workflow = new CompanyWorkflow();
+		Company company = workflow.getCompanyById(1L);
+		assertNotNull("There is no company.", company);
 	}
 	
 	@Test
 	public void getCompaniesTest() throws Exception {
-		
-	}
-	
-	@Test
-	public void getCompanyTest() throws Exception {
-		
+		CompanyWorkflow workflow = new CompanyWorkflow();
+		List<Company> companies = workflow.getCompanies();
+		assertNotNull("There is no company.", companies);
 	}
 	
 	@Test
 	public void saveCompanyTest() throws Exception {
 
-		//Get user and set to every entity.
-		
 		Company company = new Company(USER, new Date(), "Hyundai");
 
 		Model model1 = new Model(USER, new Date(), "Sonata", company);
@@ -94,7 +56,6 @@ public class CompanyDbTransactionTester {
 		
 		Car car1 = new Car(USER, new Date(), "SE", model1);
 		Car car2 = new Car(USER, new Date(), "Eco", model1);
-		
 		Car car3 = new Car(USER, new Date(), "Sport", model2);
 		
 		Fixture fixture = null;

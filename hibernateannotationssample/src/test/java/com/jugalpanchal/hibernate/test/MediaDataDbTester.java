@@ -23,11 +23,21 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.jugalpanchal.db.entities.MediaData;
+import com.jugalpanchal.db.entities.User;
 import com.jugalpanchal.db.framework.Fixture;
 import com.jugalpanchal.db.framework.StatefullUnitOfWork;
 import com.jugalpanchal.db.workflows.MediaDataWorkflow;
+import com.jugalpanchal.db.workflows.UserWorkflow;
 
 public class MediaDataDbTester {
+	
+	private static User USER;
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		UserWorkflow workflow = new UserWorkflow();
+		MediaDataDbTester.USER = workflow.get(1L);
+	}
 	
 	@Test
 	public void saveBlobtest() throws Exception {

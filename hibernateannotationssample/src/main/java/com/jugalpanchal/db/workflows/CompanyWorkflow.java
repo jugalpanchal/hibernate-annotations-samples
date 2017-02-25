@@ -28,9 +28,9 @@ public class CompanyWorkflow extends Workflow {
 		return company;
 	}
 
-	public List<?> getCompanies() throws Exception {
+	public List<Company> getCompanies() throws Exception {
 
-		List<?> companies = null;
+		List<Company> companies = null;
 		Fixture fixture = null;
 		try {
 			fixture = new Fixture();

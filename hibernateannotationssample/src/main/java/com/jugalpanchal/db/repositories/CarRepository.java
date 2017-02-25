@@ -14,20 +14,6 @@ public class CarRepository extends Repository<Car> {
 	public CarRepository(Session statefullSession) {
 		super(statefullSession);
 	}
-	
-	public Car getCar(long carId) {
-		
-		Car car = (Car)this.session.createQuery("select car from Car car where car.id= :carId")
-				.setParameter("carId",carId)
-				.uniqueResult();
-		return car;
-	}
-	
-	public List<?> getCars() {
-		
-		List<?> cars = this.session.createQuery("select car from Car car").list();
-		return cars;
-	}
 
 	public List<?> getCarByCompanyIdAndReleaseDate(long companyId, Date carReleaseDate) {
 		
@@ -36,11 +22,5 @@ public class CarRepository extends Repository<Car> {
 					.setParameter("companyId", companyId)
 					.list();
 		return cars;
-	}
-	
-	public long getCarCount() {
-		long count = (Long) this.session.createQuery("select COUNT(*) from Car ")
-				.uniqueResult();
-		return count;
 	}
 }

@@ -7,10 +7,59 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
+
 import javax.imageio.ImageIO;
+
+import org.hibernate.Session;
+
+import com.jugalpanchal.db.entities.Company;
+import com.jugalpanchal.db.entities.MediaData;
+import com.jugalpanchal.db.framework.Fixture;
+import com.jugalpanchal.db.repositories.CompanyRepository;
+import com.jugalpanchal.db.repositories.MediaDataRepository;
 
 public class MediaDataWorkflow extends Workflow {
 
+	public MediaData getMediaDataById(long mediaDataId) throws Exception {
+		MediaData mediaData = null;
+		Fixture fixture = null;
+		try {
+			fixture = new Fixture();
+			Session statefullSession = fixture.getSession();
+
+			MediaDataRepository repository = new MediaDataRepository(statefullSession);
+			mediaData = repository.getMediaData(mediaDataId);
+
+		} catch (Exception ex) {
+			fixture.closeSessionFactory();
+			throw ex;
+		} finally {
+			fixture.closeStatelessSession();
+		}
+		return mediaData;
+	}
+
+	public List<MediaData> getMediaDataList() throws Exception {
+
+		List<MediaData> mediaDataList = null;
+		Fixture fixture = null;
+		try {
+			fixture = new Fixture();
+			Session statefullSession = fixture.getSession();
+
+			MediaDataRepository repository = new MediaDataRepository(statefullSession);
+			mediaDataList = repository.getMediaDataList();
+
+		} catch (Exception ex) {
+			fixture.closeSessionFactory();
+			throw ex;
+		} finally {
+			fixture.closeSession();
+		}
+		return mediaDataList;
+	}
+	
 	public byte[] convertToByteArray(InputStream uploadedInputStream)
 			throws Exception {
 		byte[] genericBlob = null;

@@ -19,9 +19,15 @@ public class CompanyRepository extends Repository<Company> {
 		return company;
 	}
 
-	public List<?> getAll() {
-		List<?> companies = this.statefullSession.createQuery("select company from Company company")
+	public List<Company> getAll() {
+		List<Company> companies = this.statefullSession.createQuery("select company from Company company")
 				.list();
 		return companies;
+	}
+	
+	public long getCompanyCount() {
+		long count = (Long) this.statefullSession.createQuery("select COUNT(*) from Company ")
+				.uniqueResult();
+		return count;
 	}
 }
