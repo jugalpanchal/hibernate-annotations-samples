@@ -15,7 +15,7 @@ public class CarRepository extends Repository<Car> {
 		super(statefullSession);
 	}
 	
-	public Car getCar(long carId) {//TODO: Remove method and get from base class.
+	public Car getCar(long carId) {
 		
 		Car car = (Car)this.session.createQuery("select car from Car car where car.id= :carId")
 				.setParameter("carId",carId)
@@ -23,7 +23,7 @@ public class CarRepository extends Repository<Car> {
 		return car;
 	}
 	
-	public List<?> getCars() {//TODO: Remove method and get from base class.
+	public List<?> getCars() {
 		
 		List<?> cars = this.session.createQuery("select car from Car car").list();
 		return cars;
@@ -38,7 +38,7 @@ public class CarRepository extends Repository<Car> {
 		return cars;
 	}
 	
-	public long getCarCount() {//TODO: Remove method and get from base class.
+	public long getCarCount() {
 		long count = (Long) this.session.createQuery("select COUNT(*) from Car ")
 				.uniqueResult();
 		return count;

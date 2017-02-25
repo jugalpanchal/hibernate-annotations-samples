@@ -7,19 +7,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.List;
-
 import javax.imageio.ImageIO;
 
-import org.hibernate.Session;
-import org.hibernate.StatelessSession;
-
-import com.jugalpanchal.db.entities.MediaData;
-import com.jugalpanchal.db.framework.Fixture;
-import com.jugalpanchal.db.framework.StatelessUnitOfWork;
-import com.jugalpanchal.db.repositories.MediaDataRepository;
-
-public class MediaDataWorkflow extends Workflow<MediaData> {
+public class MediaDataWorkflow extends Workflow {
 
 	public byte[] convertToByteArray(InputStream uploadedInputStream)
 			throws Exception {

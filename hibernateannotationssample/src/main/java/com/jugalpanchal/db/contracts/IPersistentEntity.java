@@ -4,8 +4,8 @@ import java.util.Date;
 
 public interface IPersistentEntity {
 	long getId();
-	//Date getCreationDate();
-	//Date getUpdationDate();
+	Date getCreationDate();
+	Date getUpdationDate();
 	IUser getCreatedByUser();
 	IUser getUpdatedByUser();
 }

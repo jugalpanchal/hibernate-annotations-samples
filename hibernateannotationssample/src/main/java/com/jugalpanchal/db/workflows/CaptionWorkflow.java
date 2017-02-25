@@ -15,7 +15,6 @@ public class CaptionWorkflow extends Workflow {
 		try {
 			
 			fixture = new Fixture();
-			//String str = fixture.getDate();
 			Session statefullSession = fixture.getSession();
 
 			CaptionRepository repository = new CaptionRepository(statefullSession);

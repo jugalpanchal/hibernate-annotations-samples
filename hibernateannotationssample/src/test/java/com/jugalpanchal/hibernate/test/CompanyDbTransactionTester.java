@@ -2,6 +2,8 @@ package com.jugalpanchal.hibernate.test;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.hibernate.Session;
 import org.hibernate.StatelessSession;
 import org.junit.AfterClass;
@@ -24,7 +26,7 @@ public class CompanyDbTransactionTester {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		
-		User user = new User("Jugal");
+		User user = new User(null, new Date(),"Jugal");
 		
 		Fixture fixture = null;
 		boolean isSaved = false;
@@ -85,15 +87,15 @@ public class CompanyDbTransactionTester {
 
 		//Get user and set to every entity.
 		
-		Company company = new Company(USER, "Hyundai");
+		Company company = new Company(USER, new Date(), "Hyundai");
 
-		Model model1 = new Model(USER, "Sonata", company);
-		Model model2 = new Model(USER, "Accent", company);
+		Model model1 = new Model(USER, new Date(), "Sonata", company);
+		Model model2 = new Model(USER, new Date(), "Accent", company);
 		
-		Car car1 = new Car(USER, "SE", model1);
-		Car car2 = new Car(USER, "Eco", model1);
+		Car car1 = new Car(USER, new Date(), "SE", model1);
+		Car car2 = new Car(USER, new Date(), "Eco", model1);
 		
-		Car car3 = new Car(USER, "Sport", model2);
+		Car car3 = new Car(USER, new Date(), "Sport", model2);
 		
 		Fixture fixture = null;
 		boolean isSaved = false;

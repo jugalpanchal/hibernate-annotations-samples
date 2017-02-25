@@ -9,11 +9,10 @@ import com.jugalpanchal.db.entities.PersistentEntity;
 import com.jugalpanchal.db.framework.Fixture;
 import com.jugalpanchal.db.framework.StatefullUnitOfWork;
 import com.jugalpanchal.db.framework.StatelessUnitOfWork;
-import com.jugalpanchal.db.repositories.Repository;
 
-public abstract class Workflow<T extends PersistentEntity> {
+public abstract class Workflow {
 
-	public boolean saveByStatefull(T persistentEntity) throws Exception {
+	public boolean saveByStatefull(PersistentEntity persistentEntity) throws Exception {
 		boolean isSaved = false;
 		Fixture fixture = null;
 		try {
@@ -35,7 +34,7 @@ public abstract class Workflow<T extends PersistentEntity> {
 		return isSaved;
 	}
 	
-	public boolean saveByStatefull(List<T> persistentEntities) throws Exception {
+	public boolean saveByStatefull(List<PersistentEntity> persistentEntities) throws Exception {
 		boolean isSaved = false;
 		Fixture fixture = null;
 		try {
@@ -60,7 +59,7 @@ public abstract class Workflow<T extends PersistentEntity> {
 		return isSaved;
 	}
 
-	public boolean saveByStateless(T persistentEntity) throws Exception {
+	public boolean saveByStateless(PersistentEntity persistentEntity) throws Exception {
 		boolean isSaved = false;
 		Fixture fixture = null;
 		try {
@@ -78,44 +77,5 @@ public abstract class Workflow<T extends PersistentEntity> {
 			fixture.closeStatelessSession();
 		}
 		return isSaved;
-	}
-	
-	
-	public T get(long id) throws Exception {
-		T persistentEntity = null;
-		
-		Fixture fixture = null;
-		try {
-			fixture = new Fixture();
-			Session statefullSession = fixture.getSession();
-			
-			Repository<T> repository = new Repository<T>(statefullSession);
-			persistentEntity = repository.get(id);
-		} catch (Exception ex) {
-			fixture.closeSessionFactory();
-			throw ex;
-		} finally {
-			fixture.closeSession();
-		}
-		return persistentEntity;
-	}
-	
-	public List<T> getAll() throws Exception {
-		List<T> persistentEntities = null;
-		
-		Fixture fixture = null;
-		try {
-			fixture = new Fixture();
-			Session statefullSession = fixture.getSession();
-			
-			Repository<T> repository = new Repository<T>(statefullSession);
-			persistentEntities = repository.getAll();
-		} catch (Exception ex) {
-			fixture.closeSessionFactory();
-			throw ex;
-		} finally {
-			fixture.closeSession();
-		}
-		return persistentEntities;
 	}
 }

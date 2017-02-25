@@ -3,6 +3,7 @@ package com.jugalpanchal.hibernate.test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -12,11 +13,11 @@ import com.jugalpanchal.db.workflows.UserWorkflow;
 
 public class UserDbTester {
 
-	/*@Test
+	@Test
 	public void getUser() throws Exception {
 
 		UserWorkflow workflow = new UserWorkflow();
-		User user = workflow.get(10L);
+		User user = workflow.get(1L);
 		assertNotNull("User is not available.", user);
 	}
 	
@@ -31,7 +32,7 @@ public class UserDbTester {
 	@Test
 	public void saveUser() throws Exception {
 
-		User user = new User("Jugal");
+		User user = new User(null, new Date(), "Jugal");
 		UserWorkflow workflow = new UserWorkflow();
 		Boolean isSaved = workflow.saveByStatefull(user);
 		assertTrue("User is saved.", isSaved);
@@ -40,14 +41,14 @@ public class UserDbTester {
 	@Test
 	public void saveUsers() throws Exception {
 
-		List<User> users = new ArrayList<User>() {{
-			add(new User("Jugal"));
-			add(new User("John"));
-			add(new User("Alan"));
+		/*List<User> users = new ArrayList<User>() {{
+			add(new User(null, new Date(), "Jugal"));
+			add(new User(null, new Date(), "John"));
+			add(new User(null, new Date(), "Alan"));
 		}};
 		
 		UserWorkflow workflow = new UserWorkflow();
 		Boolean isSaved = workflow.saveByStatefull(users);
-		assertTrue("User is saved.", isSaved);
-	}*/
+		assertTrue("User is saved.", isSaved);*/
+	}
 }

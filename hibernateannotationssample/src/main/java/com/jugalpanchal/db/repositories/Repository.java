@@ -1,13 +1,7 @@
 package com.jugalpanchal.db.repositories;
 
-import java.lang.reflect.ParameterizedType;
-import java.util.List;
-
 import org.hibernate.Session;
-import org.hibernate.StatelessSession;
-
 import com.jugalpanchal.db.entities.PersistentEntity;
-import com.jugalpanchal.db.entities.User;
 
 public class Repository<T extends PersistentEntity> {
 	
@@ -21,14 +15,14 @@ public class Repository<T extends PersistentEntity> {
 		this.statefullSession = statefullSession;
 	}
 	
-	public T get(long id) {
+	/*public T get(long id) {
 
 		T persistentEntity = null;
 		try {
-			ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
-		    Class<T> classType = (Class<T>) type.getActualTypeArguments()[0];
-		    
-			persistentEntity = (T)statefullSession.get(classType , id);
+			//Issue: Java doesn't support. wait for java update to support it.
+			//Generics are not reified at run-time. This means the information is not present at run-time.
+			//http://stackoverflow.com/questions/3403909/get-generic-type-of-class-at-runtime
+			//persistentEntity = (T)statefullSession.get(classType , id);
 		} catch (Exception ex) {
 			throw ex;
 		}
@@ -45,5 +39,5 @@ public class Repository<T extends PersistentEntity> {
 			throw ex;
 		}
 		return persistentEntities;
-	}
+	}*/
 }

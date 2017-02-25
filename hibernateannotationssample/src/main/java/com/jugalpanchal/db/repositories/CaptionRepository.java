@@ -12,7 +12,7 @@ public class CaptionRepository extends Repository<Caption> {
 		super(statefullSession);
 	}
 
-	public Vision getVision() {//TODO: Remove method and get from base class.
+	public Vision getVision() {
 
 		Vision vision = null;
 		try {
@@ -25,7 +25,7 @@ public class CaptionRepository extends Repository<Caption> {
 		return vision;
 	}
 
-	public Mission getMission() {//TODO: Remove method and get from base class.
+	public Mission getMission() {
 
 		Mission mission = null;
 		try {

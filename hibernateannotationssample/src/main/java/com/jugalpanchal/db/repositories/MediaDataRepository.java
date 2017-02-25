@@ -26,7 +26,7 @@ public class MediaDataRepository extends Repository<MediaData> {
 		return mediaData;
 	}
 
-	public List<?> getMediaDataList() {//TODO: Remove method and get from base class.
+	public List<?> getMediaDataList() {
 		List<?> mediaDataList = null;
 		try {
 			mediaDataList = this.statefullSession.createQuery("select m from  MediaData  m")

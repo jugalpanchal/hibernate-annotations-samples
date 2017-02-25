@@ -2,16 +2,15 @@ package com.jugalpanchal.db.repositories;
 
 import org.hibernate.Session;
 
-import com.jugalpanchal.db.entities.Company;
 import com.jugalpanchal.db.entities.User;
 
-public class UserRepository extends Repository<Company> {
+public class UserRepository extends Repository<User> {
 	
 	public UserRepository(Session statefullSession) {
 		super(statefullSession);
 	}
 
-	public User getUser(long userId) {//TODO: Remove method and get from base class.
+	public User getUser(long userId) {
 		
 		User user = (User)this.statefullSession.createQuery("select user from User user where user.id= :userId")
 				.setParameter("userId",userId)
