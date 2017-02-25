@@ -24,7 +24,7 @@ public class CompanyDbTransactionTester {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		
-		/*User user = new User("Jugal");
+		User user = new User("Jugal");
 		
 		Fixture fixture = null;
 		boolean isSaved = false;
@@ -43,13 +43,13 @@ public class CompanyDbTransactionTester {
 			CompanyDbTransactionTester.USER = user;//Holds to tear down object.
 			fixture.closeSession();
 		}
-		assertTrue("User is not saved.", isSaved);*/
+		assertTrue("User is not saved.", isSaved);
 	}
  
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		
-		/*Fixture fixture = null;
+		Fixture fixture = null;
 		boolean isDeleted = false;
 		try {
 			fixture = new Fixture();
@@ -67,7 +67,7 @@ public class CompanyDbTransactionTester {
 		}finally {
 			fixture.closeSession();
 		}
-		assertTrue("User is not deleted.", isDeleted);*/
+		assertTrue("User is not deleted.", isDeleted);
 	}
 	
 	@Test

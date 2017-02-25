@@ -1,5 +1,5 @@
 package com.jugalpanchal.db.contracts;
 
-public interface IUser extends IPersistentEntity, IActivateEntity {
+public interface IUser {
 	String getName();
 }

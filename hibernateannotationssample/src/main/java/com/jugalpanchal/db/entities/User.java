@@ -10,7 +10,7 @@ import com.jugalpanchal.db.contracts.IUser;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements IUser {
 	
 	@Id
 	@GeneratedValue

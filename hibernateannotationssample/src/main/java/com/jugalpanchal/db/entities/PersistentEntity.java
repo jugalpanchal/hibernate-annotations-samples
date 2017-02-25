@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -31,11 +33,13 @@ public class PersistentEntity implements IPersistentEntity, IActivateEntity {
 	@Column(name = "updation_date_time", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false, updatable = true)
 	private Date updationDate;*/
 	
-	/*@Column(name = "created_by_user_id")
+	@ManyToOne
+	@JoinColumn(name = "created_by_user_id")
 	private User createdByUser;
 	
-	@Column(name = "updated_by_user_id")
-	private User updatedByUser;*/
+	@ManyToOne
+	@JoinColumn(name = "updated_by_user_id")
+	private User updatedByUser;
 	
 	@Column(name = "is_active")
 	private boolean isActive;
@@ -46,7 +50,7 @@ public class PersistentEntity implements IPersistentEntity, IActivateEntity {
 	
 	public PersistentEntity(User createdByUser) {
 		this();
-		//this.createdByUser = createdByUser;
+		this.createdByUser = createdByUser;
 	}
 	
 	public long getId() {
@@ -71,7 +75,7 @@ public class PersistentEntity implements IPersistentEntity, IActivateEntity {
 		this.updationDate = updationDate;
 	}*/
 
-	/*public User getCreatedByUser() {
+	public IUser getCreatedByUser() {
 		return createdByUser;
 	}
 
@@ -79,13 +83,13 @@ public class PersistentEntity implements IPersistentEntity, IActivateEntity {
 		this.createdByUser = createdByUser;
 	}
 
-	public User getUpdatedByUser() {
+	public IUser getUpdatedByUser() {
 		return updatedByUser;
 	}
 
 	public void setUpdatedByUser(User updatedByUser) {
 		this.updatedByUser = updatedByUser;
-	}*/
+	}
 
 	public boolean isActive() {
 		return isActive;
