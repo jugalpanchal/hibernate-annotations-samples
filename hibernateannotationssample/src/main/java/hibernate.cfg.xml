@@ -39,7 +39,8 @@
 		<mapping class="com.jugalpanchal.db.entities.Model"/>
 		<mapping class="com.jugalpanchal.db.entities.Company"/>
 		<mapping class="com.jugalpanchal.db.entities.User"/>
-		<mapping class="com.jugalpanchal.db.entities.Vision" />
-		<mapping class="com.jugalpanchal.db.entities.Mission" />
+		<mapping class="com.jugalpanchal.db.entities.Vision"/>
+		<mapping class="com.jugalpanchal.db.entities.Mission"/>
+		<mapping class="com.jugalpanchal.db.entities.MediaData"/>
 	</session-factory>
 </hibernate-configuration>
