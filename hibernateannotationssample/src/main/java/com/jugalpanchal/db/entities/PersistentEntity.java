@@ -23,40 +23,37 @@ public abstract class PersistentEntity implements IPersistentEntity, IActivateEn
 	@Column(name = "id")
 	private long id;
 
-	/*@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "creation_date_time", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false, updatable = false)
 	private Date creationDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "updation_date_time", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false, updatable = true)
-	private Date updationDate;*/
+	private Date updationDate;
 	
-	/*@Column(name = "created_by_user_id")
+	@Column(name = "created_by_user_id")
 	private User createdByUser;
 	
 	@Column(name = "updated_by_user_id")
-	private User updatedByUser;*/
+	private User updatedByUser;
 	
 	@Column(name = "is_active")
 	private boolean isActive;
 	
 	public PersistentEntity() {
+		this.isActive = true;//Default active
 	}
 	
-	public PersistentEntity(//Date creationDate, Date updationDate, //IUser createdByUser, IUser updatedByUser,
-			boolean isActive) {
-		//this.creationDate = creationDate;
-		//this.updationDate = updationDate;
-		//this.createdByUser = createdByUser;
-		//this.updatedByUser = updatedByUser;
-		this.isActive = isActive;
+	public PersistentEntity(User createdByUser) {
+		this();
+		this.createdByUser = createdByUser;
 	}
 	
 	public long getId() {
 		return id;
 	}
 
-	/*public Date getCreationDate() {
+	public Date getCreationDate() {
 		return creationDate;
 	}
 
@@ -72,13 +69,13 @@ public abstract class PersistentEntity implements IPersistentEntity, IActivateEn
 	@PreUpdate
 	public void setUpdationDate(Date updationDate) {
 		this.updationDate = updationDate;
-	}*/
+	}
 
-	/*public IUser getCreatedByUser() {
+	public IUser getCreatedByUser() {
 		return createdByUser;
 	}
 
-	public void setCreatedByUser(IUser createdByUser) {
+	public void setCreatedByUser(User createdByUser) {
 		this.createdByUser = createdByUser;
 	}
 
@@ -86,9 +83,9 @@ public abstract class PersistentEntity implements IPersistentEntity, IActivateEn
 		return updatedByUser;
 	}
 
-	public void setUpdatedByUser(IUser updatedByUser) {
+	public void setUpdatedByUser(User updatedByUser) {
 		this.updatedByUser = updatedByUser;
-	}*/
+	}
 
 	public boolean isActive() {
 		return isActive;

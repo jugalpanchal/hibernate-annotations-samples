@@ -11,7 +11,7 @@ public class Mission extends Caption {
 		super();
 	}
 
-	/*public Mission(Date creationDate, long creationUserId, String value) {
-		super(creationDate, creationUserId, value);
-	}*/
+	public Mission(User createdByUser, String value) {
+		super(createdByUser, value);
+	}
 }

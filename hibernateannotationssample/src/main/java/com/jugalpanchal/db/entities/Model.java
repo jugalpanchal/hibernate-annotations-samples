@@ -27,14 +27,13 @@ public class Model extends PersistentEntity {
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "model")
 	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
-	private Collection<Car> cars;
+	private Collection<Car> cars = new ArrayList<Car>();
 
 	public Model() {
-		this.cars = new ArrayList<Car>();
 	}
 	
-	public Model(String name, Company company) {
-		this();
+	public Model(User createdByUser, String name, Company company) {
+		super(createdByUser);
 		this.name = name;
 		this.company = company;
 		this.company.addModel(this);

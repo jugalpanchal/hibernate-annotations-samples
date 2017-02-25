@@ -17,7 +17,6 @@ public class User extends PersistentEntity implements IUser {
 	}
 	
 	public User(String name) {
-		this();
 		this.name = name;
 	}
 	

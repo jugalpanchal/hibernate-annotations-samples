@@ -21,7 +21,8 @@ public class Car extends PersistentEntity {
 		
 	}
 	
-	public Car(String name, Model model) {
+	public Car(User createdByUser, String name, Model model) {
+		super(createdByUser);
 		this.name = name;
 		this.model = model;
 		this.model.addCar(this);

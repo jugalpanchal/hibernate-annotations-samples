@@ -11,7 +11,7 @@ public class Vision extends Caption {
 		super();
 	}
 
-	/*public Vision(Date creationDate, long creationUserId, String value) {
-		super(creationDate, creationUserId, value);
-	}*/
+	public Vision(User createdByUser, String value) {
+		super(createdByUser, value);
+	}
 }

@@ -16,23 +16,20 @@ public class Caption extends PersistentEntity {
 
 	@Column(name = "value", columnDefinition="TEXT")
 	private String value;
-	
-	public void setValue(String value) {
-		this.value = value;
-	}
-	
 	public Caption()
 	{
-		super();
 	}
 	
-	/*public Caption(Date creationDate,Long creationUserId, String value)
-	{
-		super(creationDate,creationUserId);
+	public Caption(User createdByUser, String value) {
+		super(createdByUser);
 		this.value = value;
-	}*/
+	}
 
 	public String getValue() {
 		return value;
+	}
+	
+	public void setValue(String value) {
+		this.value = value;
 	}
 }
