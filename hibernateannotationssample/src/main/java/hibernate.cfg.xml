@@ -30,6 +30,8 @@
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">true</property>
 
+		<!--<property name="hbm2ddl.import_files">initial_data.sql</property> -->
+
 		<!-- create create-drop validate update -->
 		<property name="hbm2ddl.auto">create-drop</property>
 
@@ -37,5 +39,7 @@
 		<mapping class="com.jugalpanchal.db.entities.Model"/>
 		<mapping class="com.jugalpanchal.db.entities.Company"/>
 		<mapping class="com.jugalpanchal.db.entities.User"/>
+		<mapping class="com.jugalpanchal.db.entities.Vision" />
+		<mapping class="com.jugalpanchal.db.entities.Mission" />
 	</session-factory>
 </hibernate-configuration>

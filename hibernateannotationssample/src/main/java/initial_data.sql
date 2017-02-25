@@ -1,0 +1,1 @@
+INSERT INTO motordb.user (id, name) VALUES (1, "Jugal");
