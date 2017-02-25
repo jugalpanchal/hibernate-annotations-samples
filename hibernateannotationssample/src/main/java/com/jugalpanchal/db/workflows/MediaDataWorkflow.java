@@ -28,39 +28,36 @@ public class MediaDataWorkflow extends Workflow {
 			fixture = new Fixture();
 			StatelessSession statelessSession = fixture.getStatelessSession();
 
-			MediaDataRepository repository = new MediaDataRepository();
-			mediaData = repository.getMediaData(statelessSession, mediaDataId);
+			//MediaDataRepository repository = new MediaDataRepository();
+			//mediaData = repository.getMediaData(statelessSession, mediaDataId);
 
 		} catch (Exception ex) {
 			fixture.closeSessionFactory();
 			throw ex;
 		} finally {
-			if (fixture != null)
-				fixture.closeStatelessSession();
+			fixture.closeStatelessSession();
 		}
 		return mediaData;
 	}
 
-	public List<MediaData> getMediaDataList() throws Exception {
+	public List<?> getMediaDataList() throws Exception {
 
-		List<MediaData> mediadataList = null;
+		List<?> mediadataList = null;
 		Fixture fixture = null;
 		try {
 			fixture = new Fixture();
 			Session statefullSession = fixture.getSession();
 
-			MediaDataRepository repository = new MediaDataRepository();
-			mediadataList = repository.getMediaDataList(statefullSession);
+			MediaDataRepository repository = new MediaDataRepository(statefullSession);
+			mediadataList = repository.getAll();
 
 		} catch (Exception ex) {
 			fixture.closeSessionFactory();
 			throw ex;
 		} finally {
-			if (fixture != null)
-				fixture.closeSession();
+			fixture.closeSession();
 		}
 		return mediadataList;
-
 	}
 
 	public long saveMediaData(MediaData mediaData) throws Exception {

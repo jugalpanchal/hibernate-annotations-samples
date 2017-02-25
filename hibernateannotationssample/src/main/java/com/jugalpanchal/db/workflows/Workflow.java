@@ -1,5 +1,7 @@
 package com.jugalpanchal.db.workflows;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.StatelessSession;
 
@@ -26,8 +28,7 @@ public abstract class Workflow {
 		} catch (Exception ex) {
 			throw ex;
 		} finally {
-			if (fixture != null)
-				fixture.closeSession();
+			fixture.closeSession();
 		}
 		return isSaved;
 	}
@@ -46,9 +47,21 @@ public abstract class Workflow {
 		} catch (Exception ex) {
 			throw ex;
 		} finally {
-			if (fixture != null)
-				fixture.closeStatelessSession();
+			fixture.closeStatelessSession();
 		}
 		return isSaved;
 	}
+	
+	/*
+	public <T> T get() {
+		T persistentEntity = null;
+		
+		return persistentEntity;
+	}
+	
+	public <T> List<T> getAll() {
+		List<T> persistentEntities = null;
+		
+		return persistentEntities;
+	}*/
 }
