@@ -11,24 +11,11 @@ import com.jugalpanchal.db.contracts.IUser;
 @Entity
 @Table(name = "user")
 public class User extends PersistentEntity implements IUser {
-	
-	@Id
-	@GeneratedValue
-	@Column(name = "id")
-	private long id;
 
 	@Column(name = "name")
 	private String name;
 	
 	public User() {
-	}
-	
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 	
 	public User(String name) {
