@@ -4,17 +4,15 @@ import org.hibernate.Session;
 
 import com.jugalpanchal.db.entities.User;
 
-public class UserRepository {
+public class UserRepository extends Repository<User> {
 	
-	private Session session;
-
-	public UserRepository(Session session) {
-		this.session = session;
+	public UserRepository(Session statefullSession) {
+		super(statefullSession);
 	}
-	
-	public User getUser(long userId) {
+
+	public User getUser(long userId) {//TODO: Remove method and get from base class.
 		
-		User user = (User)this.session.createQuery("select user from User user where user.id= :userId")
+		User user = (User)this.statefullSession.createQuery("select user from User user where user.id= :userId")
 				.setParameter("userId",userId)
 				.uniqueResult();
 		return user;

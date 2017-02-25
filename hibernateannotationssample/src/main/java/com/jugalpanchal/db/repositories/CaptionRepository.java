@@ -2,17 +2,22 @@ package com.jugalpanchal.db.repositories;
 
 import org.hibernate.Session;
 
+import com.jugalpanchal.db.entities.Caption;
 import com.jugalpanchal.db.entities.Mission;
 import com.jugalpanchal.db.entities.Vision;
 
-public class CaptionRepository {
+public class CaptionRepository extends Repository<Caption> {
 	
-	public Vision getVision(Session statefullSession) {
+	public CaptionRepository(Session statefullSession) {
+		super(statefullSession);
+	}
+
+	public Vision getVision() {//TODO: Remove method and get from base class.
 
 		Vision vision = null;
 		try {
-			vision = (Vision) statefullSession.createQuery(
-					"select p from Vision p").uniqueResult();
+			vision = (Vision) this.statefullSession.createQuery("select p from Vision p")
+					.uniqueResult();
 
 		} catch (Exception ex) {
 			throw ex;
@@ -20,12 +25,12 @@ public class CaptionRepository {
 		return vision;
 	}
 
-	public Mission getMission(Session statefullSession) {
+	public Mission getMission() {//TODO: Remove method and get from base class.
 
 		Mission mission = null;
 		try {
-			mission = (Mission) statefullSession.createQuery(
-					"select p from Mission p").uniqueResult();
+			mission = (Mission) this.statefullSession.createQuery("select p from Mission p")
+					.uniqueResult();
 
 		} catch (Exception ex) {
 			throw ex;

@@ -7,15 +7,15 @@ import org.hibernate.Session;
 
 import com.jugalpanchal.db.entities.Car;
 
-public class CarRepository {
+public class CarRepository extends Repository<Car> {
 	
 	private Session session;
 
-	public CarRepository(Session session) {
-		this.session = session;
+	public CarRepository(Session statefullSession) {
+		super(statefullSession);
 	}
 	
-	public Car getCar(long carId) {
+	public Car getCar(long carId) {//TODO: Remove method and get from base class.
 		
 		Car car = (Car)this.session.createQuery("select car from Car car where car.id= :carId")
 				.setParameter("carId",carId)
@@ -23,7 +23,7 @@ public class CarRepository {
 		return car;
 	}
 	
-	public List<?> getCars() {
+	public List<?> getCars() {//TODO: Remove method and get from base class.
 		
 		List<?> cars = this.session.createQuery("select car from Car car").list();
 		return cars;
@@ -38,7 +38,7 @@ public class CarRepository {
 		return cars;
 	}
 	
-	public long getCarCount() {
+	public long getCarCount() {//TODO: Remove method and get from base class.
 		long count = (Long) this.session.createQuery("select COUNT(*) from Car ")
 				.uniqueResult();
 		return count;
