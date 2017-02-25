@@ -2,9 +2,10 @@ package com.jugalpanchal.db.repositories;
 
 import org.hibernate.Session;
 
+import com.jugalpanchal.db.entities.Company;
 import com.jugalpanchal.db.entities.User;
 
-public class UserRepository extends Repository<User> {
+public class UserRepository extends Repository<Company> {
 	
 	public UserRepository(Session statefullSession) {
 		super(statefullSession);

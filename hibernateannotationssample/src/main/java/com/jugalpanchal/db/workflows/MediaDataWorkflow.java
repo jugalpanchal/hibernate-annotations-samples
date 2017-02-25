@@ -19,69 +19,7 @@ import com.jugalpanchal.db.framework.Fixture;
 import com.jugalpanchal.db.framework.StatelessUnitOfWork;
 import com.jugalpanchal.db.repositories.MediaDataRepository;
 
-public class MediaDataWorkflow extends Workflow {
-
-	public MediaData getMediaDataById(long mediaDataId) throws Exception {
-		MediaData mediaData = null;
-		Fixture fixture = null;
-		try {
-			fixture = new Fixture();
-			StatelessSession statelessSession = fixture.getStatelessSession();
-
-			//MediaDataRepository repository = new MediaDataRepository();
-			//mediaData = repository.getMediaData(statelessSession, mediaDataId);
-
-		} catch (Exception ex) {
-			fixture.closeSessionFactory();
-			throw ex;
-		} finally {
-			fixture.closeStatelessSession();
-		}
-		return mediaData;
-	}
-
-	public List<?> getMediaDataList() throws Exception {
-
-		List<?> mediadataList = null;
-		Fixture fixture = null;
-		try {
-			fixture = new Fixture();
-			Session statefullSession = fixture.getSession();
-
-			MediaDataRepository repository = new MediaDataRepository(statefullSession);
-			mediadataList = repository.getAll();
-
-		} catch (Exception ex) {
-			fixture.closeSessionFactory();
-			throw ex;
-		} finally {
-			fixture.closeSession();
-		}
-		return mediadataList;
-	}
-
-	public long saveMediaData(MediaData mediaData) throws Exception {
-		long id = 0;
-		Fixture fixture = null;
-		try {
-			fixture = new Fixture();
-			StatelessSession statelessSession = fixture.getStatelessSession();
-
-			StatelessUnitOfWork unitOfWork = new StatelessUnitOfWork(
-					statelessSession);
-			statelessSession.insert(mediaData);
-			boolean isSaved = unitOfWork.commit();
-			if (isSaved)
-				id = mediaData.getId();
-		} catch (Exception ex) {
-			fixture.closeSessionFactory();
-			throw ex;
-		} finally {
-			if (fixture != null)
-				fixture.closeStatelessSession();
-		}
-		return id;
-	}
+public class MediaDataWorkflow extends Workflow<MediaData> {
 
 	public byte[] convertToByteArray(InputStream uploadedInputStream)
 			throws Exception {

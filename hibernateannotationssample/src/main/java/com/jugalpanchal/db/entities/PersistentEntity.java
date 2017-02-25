@@ -16,26 +16,26 @@ import com.jugalpanchal.db.contracts.IPersistentEntity;
 import com.jugalpanchal.db.contracts.IUser;
 
 @MappedSuperclass
-public abstract class PersistentEntity implements IPersistentEntity, IActivateEntity {
+public class PersistentEntity implements IPersistentEntity, IActivateEntity {
 
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
 	private long id;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	/*@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "creation_date_time", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false, updatable = false)
 	private Date creationDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "updation_date_time", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false, updatable = true)
-	private Date updationDate;
+	private Date updationDate;*/
 	
-	@Column(name = "created_by_user_id")
+	/*@Column(name = "created_by_user_id")
 	private User createdByUser;
 	
 	@Column(name = "updated_by_user_id")
-	private User updatedByUser;
+	private User updatedByUser;*/
 	
 	@Column(name = "is_active")
 	private boolean isActive;
@@ -46,14 +46,14 @@ public abstract class PersistentEntity implements IPersistentEntity, IActivateEn
 	
 	public PersistentEntity(User createdByUser) {
 		this();
-		this.createdByUser = createdByUser;
+		//this.createdByUser = createdByUser;
 	}
 	
 	public long getId() {
 		return id;
 	}
 
-	public Date getCreationDate() {
+	/*public Date getCreationDate() {
 		return creationDate;
 	}
 
@@ -69,9 +69,9 @@ public abstract class PersistentEntity implements IPersistentEntity, IActivateEn
 	@PreUpdate
 	public void setUpdationDate(Date updationDate) {
 		this.updationDate = updationDate;
-	}
+	}*/
 
-	public IUser getCreatedByUser() {
+	/*public User getCreatedByUser() {
 		return createdByUser;
 	}
 
@@ -79,13 +79,13 @@ public abstract class PersistentEntity implements IPersistentEntity, IActivateEn
 		this.createdByUser = createdByUser;
 	}
 
-	public IUser getUpdatedByUser() {
+	public User getUpdatedByUser() {
 		return updatedByUser;
 	}
 
 	public void setUpdatedByUser(User updatedByUser) {
 		this.updatedByUser = updatedByUser;
-	}
+	}*/
 
 	public boolean isActive() {
 		return isActive;

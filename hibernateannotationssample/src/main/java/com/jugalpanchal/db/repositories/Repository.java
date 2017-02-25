@@ -1,11 +1,15 @@
 package com.jugalpanchal.db.repositories;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.StatelessSession;
 
-public abstract class Repository<T> {
+import com.jugalpanchal.db.entities.PersistentEntity;
+import com.jugalpanchal.db.entities.User;
+
+public class Repository<T extends PersistentEntity> {
 	
 	protected Session statefullSession;
 
@@ -21,16 +25,19 @@ public abstract class Repository<T> {
 
 		T persistentEntity = null;
 		try {
-			//persistentEntity = (T)statefullSession.get(T, new Integer(id));
+			ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
+		    Class<T> classType = (Class<T>) type.getActualTypeArguments()[0];
+		    
+			persistentEntity = (T)statefullSession.get(classType , id);
 		} catch (Exception ex) {
 			throw ex;
 		}
 		return persistentEntity;
 	}
 
-	public List<?> getAll() {
+	public List<T> getAll() {
 		
-		List<?> persistentEntities = null;
+		List<T> persistentEntities = null;
 		try {
 			//persistentEntities = (T)statefullSession.get(T);
 

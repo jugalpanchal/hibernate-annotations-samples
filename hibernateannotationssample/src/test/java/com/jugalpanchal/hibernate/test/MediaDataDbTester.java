@@ -25,6 +25,7 @@ import org.junit.Test;
 import com.jugalpanchal.db.entities.MediaData;
 import com.jugalpanchal.db.framework.Fixture;
 import com.jugalpanchal.db.framework.StatefullUnitOfWork;
+import com.jugalpanchal.db.workflows.MediaDataWorkflow;
 
 public class MediaDataDbTester {
 	
@@ -32,24 +33,11 @@ public class MediaDataDbTester {
 	public void saveBlobtest() throws Exception {
 
 		byte[] genericBlob = null;
-		MediaData mediaData = new MediaData(new Date(), 0L, genericBlob, "image", ".jpg");
+		MediaData mediaData = new MediaData(null, genericBlob, "image", ".jpg");
 
-		Fixture fixture = null;
-		boolean isSaved = false;
-		try {
-			fixture = new Fixture();
-			Session session = fixture.getSession();
-
-			StatefullUnitOfWork unitOfWork = new StatefullUnitOfWork(session);
-			session.save(mediaData);// saveOrUpdate
-			isSaved = unitOfWork.commit();
-
-		} catch (Exception ex) {
-			fixture.closeSessionFactory();
-			throw ex;
-		} finally {
-			fixture.closeSession();
-		}
+		MediaDataWorkflow workflow = new MediaDataWorkflow();
+		boolean isSaved = workflow.saveByStatefull(mediaData);
+		
 		assertTrue("Company is not saved.", isSaved);
 	}
 

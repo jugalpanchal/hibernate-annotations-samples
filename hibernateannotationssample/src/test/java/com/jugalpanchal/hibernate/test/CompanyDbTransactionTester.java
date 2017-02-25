@@ -19,12 +19,12 @@ import com.jugalpanchal.db.repositories.UserRepository;
 
 public class CompanyDbTransactionTester {
 	
-	private static long userId;
+	private static User USER;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		
-		User user = new User("Jugal");
+		/*User user = new User("Jugal");
 		
 		Fixture fixture = null;
 		boolean isSaved = false;
@@ -40,22 +40,22 @@ public class CompanyDbTransactionTester {
 			fixture.closeSessionFactory();
 			throw ex;
 		}finally {
-			userId = user.getId();//Holds to tear down object.
+			CompanyDbTransactionTester.USER = user;//Holds to tear down object.
 			fixture.closeSession();
 		}
-		assertTrue("User is not saved.", isSaved);
+		assertTrue("User is not saved.", isSaved);*/
 	}
  
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		
-		Fixture fixture = null;
+		/*Fixture fixture = null;
 		boolean isDeleted = false;
 		try {
 			fixture = new Fixture();
 			Session session = fixture.getSession();
 			UserRepository repository = new UserRepository(session);
-			User user = repository.getUser(userId);
+			User user = repository.getUser(CompanyDbTransactionTester.USER.getId());
 			
 			StatefullUnitOfWork unitOfWork = new StatefullUnitOfWork(session);
 			session.delete(user);
@@ -67,7 +67,7 @@ public class CompanyDbTransactionTester {
 		}finally {
 			fixture.closeSession();
 		}
-		assertTrue("User is not deleted.", isDeleted);
+		assertTrue("User is not deleted.", isDeleted);*/
 	}
 	
 	@Test
@@ -85,15 +85,15 @@ public class CompanyDbTransactionTester {
 
 		//Get user and set to every entity.
 		
-		Company company = new Company("Hyundai");
+		Company company = new Company(USER, "Hyundai");
 
-		Model model1 = new Model("Sonata", company);
-		Model model2 = new Model("Accent", company);
+		Model model1 = new Model(USER, "Sonata", company);
+		Model model2 = new Model(USER, "Accent", company);
 		
-		Car car1 = new Car("SE", model1);
-		Car car2 = new Car("Eco", model1);
+		Car car1 = new Car(USER, "SE", model1);
+		Car car2 = new Car(USER, "Eco", model1);
 		
-		Car car3 = new Car("Sport", model2);
+		Car car3 = new Car(USER, "Sport", model2);
 		
 		Fixture fixture = null;
 		boolean isSaved = false;

@@ -7,9 +7,9 @@ import com.jugalpanchal.db.entities.Company;
 import com.jugalpanchal.db.framework.Fixture;
 import com.jugalpanchal.db.repositories.CompanyRepository;
 
-public class CompanyWorkflow {
+public class CompanyWorkflow extends Workflow {
 	
-	public Company getMediaDataById(long companyId) throws Exception {
+	public Company getCompanyById(long companyId) throws Exception {
 		Company company = null;
 		Fixture fixture = null;
 		try {
@@ -28,7 +28,7 @@ public class CompanyWorkflow {
 		return company;
 	}
 
-	public List<?> getMediaDataList() throws Exception {
+	public List<?> getCompanies() throws Exception {
 
 		List<?> companies = null;
 		Fixture fixture = null;

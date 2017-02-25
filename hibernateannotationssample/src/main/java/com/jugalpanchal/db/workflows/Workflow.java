@@ -9,10 +9,11 @@ import com.jugalpanchal.db.entities.PersistentEntity;
 import com.jugalpanchal.db.framework.Fixture;
 import com.jugalpanchal.db.framework.StatefullUnitOfWork;
 import com.jugalpanchal.db.framework.StatelessUnitOfWork;
+import com.jugalpanchal.db.repositories.Repository;
 
-public abstract class Workflow {
+public abstract class Workflow<T extends PersistentEntity> {
 
-	public boolean saveByStatefull(PersistentEntity persistentEntity) throws Exception {
+	public boolean saveByStatefull(T persistentEntity) throws Exception {
 		boolean isSaved = false;
 		Fixture fixture = null;
 		try {
@@ -26,6 +27,32 @@ public abstract class Workflow {
 			isSaved = unitOfWork.commit();
 
 		} catch (Exception ex) {
+			fixture.closeSessionFactory();
+			throw ex;
+		} finally {
+			fixture.closeSession();
+		}
+		return isSaved;
+	}
+	
+	public boolean saveByStatefull(List<T> persistentEntities) throws Exception {
+		boolean isSaved = false;
+		Fixture fixture = null;
+		try {
+			fixture = new Fixture();
+
+			Session statefullSession = fixture.getSession();
+			StatefullUnitOfWork unitOfWork = new StatefullUnitOfWork(
+					statefullSession);
+			
+			persistentEntities.forEach(persistentEntity -> {
+				statefullSession.saveOrUpdate(persistentEntity);	
+			});
+			
+			isSaved = unitOfWork.commit();
+
+		} catch (Exception ex) {
+			fixture.closeSessionFactory();
 			throw ex;
 		} finally {
 			fixture.closeSession();
@@ -33,7 +60,7 @@ public abstract class Workflow {
 		return isSaved;
 	}
 
-	public boolean saveByStateless(PersistentEntity persistentEntity) throws Exception {
+	public boolean saveByStateless(T persistentEntity) throws Exception {
 		boolean isSaved = false;
 		Fixture fixture = null;
 		try {
@@ -45,6 +72,7 @@ public abstract class Workflow {
 			isSaved = unitOfWork.commit();
 
 		} catch (Exception ex) {
+			fixture.closeSessionFactory();
 			throw ex;
 		} finally {
 			fixture.closeStatelessSession();
@@ -52,16 +80,42 @@ public abstract class Workflow {
 		return isSaved;
 	}
 	
-	/*
-	public <T> T get() {
+	
+	public T get(long id) throws Exception {
 		T persistentEntity = null;
 		
+		Fixture fixture = null;
+		try {
+			fixture = new Fixture();
+			Session statefullSession = fixture.getSession();
+			
+			Repository<T> repository = new Repository<T>(statefullSession);
+			persistentEntity = repository.get(id);
+		} catch (Exception ex) {
+			fixture.closeSessionFactory();
+			throw ex;
+		} finally {
+			fixture.closeSession();
+		}
 		return persistentEntity;
 	}
 	
-	public <T> List<T> getAll() {
+	public List<T> getAll() throws Exception {
 		List<T> persistentEntities = null;
 		
+		Fixture fixture = null;
+		try {
+			fixture = new Fixture();
+			Session statefullSession = fixture.getSession();
+			
+			Repository<T> repository = new Repository<T>(statefullSession);
+			persistentEntities = repository.getAll();
+		} catch (Exception ex) {
+			fixture.closeSessionFactory();
+			throw ex;
+		} finally {
+			fixture.closeSession();
+		}
 		return persistentEntities;
-	}*/
+	}
 }
