@@ -54,7 +54,7 @@ public class CompanyDbTransactionTester {
 
 		Company company = new Company(USER, new Date(), "Hyundai");
 
-		Model model1 = new Model(USER, new Date(), "Sonata", company);
+		Model model1 = new Model(USER, new Date(), "Sonata", company);//Change to bidirection method
 		Model model2 = new Model(USER, new Date(), "Accent", company);
 		
 		Car car1 = new Car(USER, new Date(), "SE", model1);
