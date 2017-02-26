@@ -49,7 +49,6 @@ public class CompanyDbTransactionTester {
 		assertNotNull("There is no company.", companies);
 	}
 	
-	@Ignore
 	@Test
 	public void saveCompanyTest() throws Exception {
 
