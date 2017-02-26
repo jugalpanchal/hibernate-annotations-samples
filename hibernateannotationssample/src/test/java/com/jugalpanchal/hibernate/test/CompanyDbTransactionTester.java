@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.StatelessSession;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.jugalpanchal.db.entities.Car;
@@ -33,6 +34,7 @@ public class CompanyDbTransactionTester {
 		USER = workflow.get(1L);
 	}
 
+	@Ignore
 	@Test
 	public void getCompanyTest() throws Exception {
 		CompanyWorkflow workflow = new CompanyWorkflow();
@@ -47,6 +49,7 @@ public class CompanyDbTransactionTester {
 		assertNotNull("There is no company.", companies);
 	}
 	
+	@Ignore
 	@Test
 	public void saveCompanyTest() throws Exception {
 
@@ -78,6 +81,7 @@ public class CompanyDbTransactionTester {
 		assertTrue("Company is not saved.", isSaved);
 	}
 	
+	@Ignore
 	@Test
 	public void modifiedCompanyTest() throws Exception {
 
