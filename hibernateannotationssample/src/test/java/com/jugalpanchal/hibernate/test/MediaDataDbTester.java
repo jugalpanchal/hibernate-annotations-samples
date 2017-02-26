@@ -43,7 +43,7 @@ public class MediaDataDbTester {
 	public void saveBlobtest() throws Exception {
 
 		byte[] genericBlob = null;
-		MediaData mediaData = new MediaData(null, null, genericBlob, "image", ".jpg");
+		MediaData mediaData = new MediaData(USER, new Date(), genericBlob, "image", ".jpg");
 
 		MediaDataWorkflow workflow = new MediaDataWorkflow();
 		boolean isSaved = workflow.saveByStatefull(mediaData);

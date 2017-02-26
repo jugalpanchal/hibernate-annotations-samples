@@ -18,6 +18,7 @@ import com.jugalpanchal.db.entities.User;
 import com.jugalpanchal.db.framework.Fixture;
 import com.jugalpanchal.db.framework.StatefullUnitOfWork;
 import com.jugalpanchal.db.framework.StatelessUnitOfWork;
+import com.jugalpanchal.db.repositories.CompanyRepository;
 import com.jugalpanchal.db.repositories.UserRepository;
 import com.jugalpanchal.db.workflows.CompanyWorkflow;
 import com.jugalpanchal.db.workflows.UserWorkflow;
@@ -79,7 +80,32 @@ public class CompanyDbTransactionTester {
 	
 	@Test
 	public void modifiedCompanyTest() throws Exception {
+
+		long companyId = 1;
 		
+		boolean isUpdated;
+		Fixture fixture = null;
+		
+		try {
+			fixture = new Fixture();
+			Session session= fixture.getSession();
+			
+			CompanyRepository repository = new CompanyRepository(session);
+			Company company = repository.get(companyId);
+			
+			company.setName("NewName");
+
+			StatefullUnitOfWork unitOfWork = new StatefullUnitOfWork(session);
+			session.update(company);
+			isUpdated = unitOfWork.commit();
+			
+		} catch (Exception ex) {
+			fixture.closeSessionFactory();
+			throw ex;
+		} finally {
+			fixture.closeSession();
+		}
+		assertTrue("Company is not updated.", isUpdated);	
 	}
 	
 	@Test
