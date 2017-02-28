@@ -11,7 +11,7 @@ public class MediaDataRepository extends Repository<MediaData> {
 		super(statefullSession);
 	}
 
-	public MediaData getMediaData(long id) {
+	public MediaData get(long id) {
 
 		MediaData mediaData = null;
 		try {
@@ -24,7 +24,7 @@ public class MediaDataRepository extends Repository<MediaData> {
 		return mediaData;
 	}
 
-	public List<MediaData> getMediaDataList() {
+	public List<MediaData> getAll() {
 		List<MediaData> mediaDataList = null;
 		try {
 			mediaDataList = this.statefullSession.createQuery("select m from  MediaData  m")

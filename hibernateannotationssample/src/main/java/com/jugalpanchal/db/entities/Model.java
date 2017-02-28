@@ -51,10 +51,6 @@ public class Model extends PersistentEntity {
 	public Company getCompany() {
 		return company;
 	}
-
-	public void setCompany(Company company) {
-		this.company = company;
-	}
 	
 	public Collection<Car> getCars() {
 		return cars;
@@ -64,7 +60,7 @@ public class Model extends PersistentEntity {
 		this.cars = cars;
 	}
 	
-	public void addCar(Car car) {
+	void addCar(Car car) {
 		this.cars.add(car);
 	}
 }

@@ -6,8 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.StatelessSession;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -18,9 +16,7 @@ import com.jugalpanchal.db.entities.Model;
 import com.jugalpanchal.db.entities.User;
 import com.jugalpanchal.db.framework.Fixture;
 import com.jugalpanchal.db.framework.StatefullUnitOfWork;
-import com.jugalpanchal.db.framework.StatelessUnitOfWork;
 import com.jugalpanchal.db.repositories.CompanyRepository;
-import com.jugalpanchal.db.repositories.UserRepository;
 import com.jugalpanchal.db.workflows.CompanyWorkflow;
 import com.jugalpanchal.db.workflows.UserWorkflow;
 
@@ -32,21 +28,6 @@ public class CompanyDbTransactionTester {
 	public static void setUpBeforeClass() throws Exception {
 		UserWorkflow workflow = new UserWorkflow();
 		USER = workflow.get(1L);
-	}
-
-	@Ignore
-	@Test
-	public void getCompanyTest() throws Exception {
-		CompanyWorkflow workflow = new CompanyWorkflow();
-		Company company = workflow.getCompanyById(1L);
-		assertNotNull("There is no company.", company);
-	}
-	
-	@Test
-	public void getCompaniesTest() throws Exception {
-		CompanyWorkflow workflow = new CompanyWorkflow();
-		List<Company> companies = workflow.getCompanies();
-		assertNotNull("There is no company.", companies);
 	}
 	
 	@Test
@@ -78,6 +59,21 @@ public class CompanyDbTransactionTester {
 			fixture.closeSession();
 		}
 		assertTrue("Company is not saved.", isSaved);
+	}
+	
+	@Ignore
+	@Test
+	public void getCompanyTest() throws Exception {
+		CompanyWorkflow workflow = new CompanyWorkflow();
+		Company company = workflow.get(1L);
+		assertNotNull("There is no company.", company);
+	}
+	
+	@Test
+	public void getCompaniesTest() throws Exception {
+		CompanyWorkflow workflow = new CompanyWorkflow();
+		List<Company> companies = workflow.getAll();
+		assertNotNull("There is no company.", companies);
 	}
 	
 	@Ignore

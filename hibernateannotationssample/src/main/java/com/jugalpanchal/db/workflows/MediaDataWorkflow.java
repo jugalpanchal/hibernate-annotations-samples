@@ -13,15 +13,13 @@ import javax.imageio.ImageIO;
 
 import org.hibernate.Session;
 
-import com.jugalpanchal.db.entities.Company;
 import com.jugalpanchal.db.entities.MediaData;
 import com.jugalpanchal.db.framework.Fixture;
-import com.jugalpanchal.db.repositories.CompanyRepository;
 import com.jugalpanchal.db.repositories.MediaDataRepository;
 
 public class MediaDataWorkflow extends Workflow {
 
-	public MediaData getMediaDataById(long mediaDataId) throws Exception {
+	public MediaData get(long mediaDataId) throws Exception {
 		MediaData mediaData = null;
 		Fixture fixture = null;
 		try {
@@ -29,7 +27,7 @@ public class MediaDataWorkflow extends Workflow {
 			Session statefullSession = fixture.getSession();
 
 			MediaDataRepository repository = new MediaDataRepository(statefullSession);
-			mediaData = repository.getMediaData(mediaDataId);
+			mediaData = repository.get(mediaDataId);
 
 		} catch (Exception ex) {
 			fixture.closeSessionFactory();
@@ -40,7 +38,7 @@ public class MediaDataWorkflow extends Workflow {
 		return mediaData;
 	}
 
-	public List<MediaData> getMediaDataList() throws Exception {
+	public List<MediaData> getAll() throws Exception {
 
 		List<MediaData> mediaDataList = null;
 		Fixture fixture = null;
@@ -49,7 +47,7 @@ public class MediaDataWorkflow extends Workflow {
 			Session statefullSession = fixture.getSession();
 
 			MediaDataRepository repository = new MediaDataRepository(statefullSession);
-			mediaDataList = repository.getMediaDataList();
+			mediaDataList = repository.getAll();
 
 		} catch (Exception ex) {
 			fixture.closeSessionFactory();
@@ -78,24 +76,22 @@ public class MediaDataWorkflow extends Workflow {
 		return genericBlob;
 	}
 
-	private void convertToByte() throws IOException {
+	//"D:/ClientExample/Albert.png"
+	public byte[] convertToByte(File fileToUpload) throws IOException {
 		try {
 			// URL url = new URL("https://google.com/images/Jersey_yellow.png");
 			// BufferedImage bi = ImageIO.read(url);
-
-			File fileToUpload = new File("D:/ClientExample/Albert.png");
+			
 			BufferedImage bi = ImageIO.read(fileToUpload);
-
 			ByteArrayOutputStream bas = new ByteArrayOutputStream();
 			ImageIO.write(bi, "png", bas);
-			byte[] logo = bas.toByteArray();
+			return bas.toByteArray();
 		} catch (Exception ex) {
 			throw ex;
 		}
 	}
 
-	private void saveToFile(InputStream uploadedInputStream,
-			String uploadedFileLocation) throws Exception {
+	public void saveToFile(InputStream uploadedInputStream, String uploadedFileLocation) throws Exception {
 
 		try {
 			int read = 0;

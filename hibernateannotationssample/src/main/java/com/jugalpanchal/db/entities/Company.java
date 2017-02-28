@@ -48,7 +48,7 @@ public class Company extends PersistentEntity {
 		this.models = models;
 	}
 	
-	public void addModel(Model model) {
+	void addModel(Model model) {
 		this.models.add(model);
 	}
 }

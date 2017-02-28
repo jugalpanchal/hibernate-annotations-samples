@@ -23,6 +23,15 @@ public class UserDbTester {
 		User user = workflow.get(1L);
 		USER = user;
 	}
+
+	@Test
+	public void saveUser() throws Exception {
+
+		User user = new User(UserDbTester.USER, new Date(), "Jugal");
+		UserWorkflow workflow = new UserWorkflow();
+		Boolean isSaved = workflow.saveByStatefull(user);
+		assertTrue("User is saved.", isSaved);
+	}
 	
 	@Test
 	public void getUser() throws Exception {
@@ -38,14 +47,5 @@ public class UserDbTester {
 		UserWorkflow workflow = new UserWorkflow();
 		List<User> users = workflow.getAll();
 		assertNotNull("Users are not available.", users);
-	}
-
-	@Test
-	public void saveUser() throws Exception {
-
-		User user = new User(UserDbTester.USER, new Date(), "Jugal");
-		UserWorkflow workflow = new UserWorkflow();
-		Boolean isSaved = workflow.saveByStatefull(user);
-		assertTrue("User is saved.", isSaved);
 	}
 }

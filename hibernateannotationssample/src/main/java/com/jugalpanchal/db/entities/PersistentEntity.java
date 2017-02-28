@@ -43,11 +43,10 @@ public class PersistentEntity implements IPersistentEntity, IActivateEntity {
 	private boolean isActive;
 	
 	public PersistentEntity() {
-		this.isActive = true;//Default active
 	}
 	
 	public PersistentEntity(User createdByUser, Date creationDate) {
-		this();
+		this.isActive = true;//Default active
 		this.createdByUser = createdByUser;
 		this.creationDate = creationDate;
 	}
@@ -69,10 +68,6 @@ public class PersistentEntity implements IPersistentEntity, IActivateEntity {
 	public Date getCreationDate() {
 		return creationDate;
 	}
-
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
 	
 	public Date getUpdationDate() {
 		return updationDate;
@@ -84,10 +79,6 @@ public class PersistentEntity implements IPersistentEntity, IActivateEntity {
 
 	public IUser getCreatedByUser() {
 		return createdByUser;
-	}
-
-	public void setCreatedByUser(User createdByUser) {
-		this.createdByUser = createdByUser;
 	}
 
 	public IUser getUpdatedByUser() {

@@ -11,7 +11,7 @@ public class SchemaDbTester {
 
 	@Test
 	public void createDbTest() throws Exception {
-		//It creates blank db.
+		//It creates blank db with one default User.
 		Fixture fixture = new Fixture();
 		Session session = fixture.getSession();
 

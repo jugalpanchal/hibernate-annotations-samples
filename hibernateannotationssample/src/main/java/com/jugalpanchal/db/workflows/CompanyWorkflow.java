@@ -9,7 +9,7 @@ import com.jugalpanchal.db.repositories.CompanyRepository;
 
 public class CompanyWorkflow extends Workflow {
 	
-	public Company getCompanyById(long companyId) throws Exception {
+	public Company get(long companyId) throws Exception {
 		Company company = null;
 		Fixture fixture = null;
 		try {
@@ -28,7 +28,7 @@ public class CompanyWorkflow extends Workflow {
 		return company;
 	}
 
-	public List<Company> getCompanies() throws Exception {
+	public List<Company> getAll() throws Exception {
 
 		List<Company> companies = null;
 		Fixture fixture = null;

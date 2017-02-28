@@ -24,20 +24,6 @@ public class CaptionDbTester {
 	}
 	
 	@Test
-	public void visionGetTest() throws Exception {
-		CaptionWorkflow workflow = new CaptionWorkflow();
-		Vision vision = workflow.getVision();
-		assertNotNull("Vision is null.", vision);
-	}
-	
-	@Test
-	public void missionGetTest() throws Exception {
-		CaptionWorkflow workflow = new CaptionWorkflow();
-		Mission mission = workflow.getMission();
-		assertNotNull("Mission is null.", mission);
-	}
-	
-	@Test
 	public void visionSaveTest() throws Exception {
 		Vision vision = new Vision(USER, new Date(), "This is vision.");
 		CaptionWorkflow workflow = new CaptionWorkflow();
@@ -51,5 +37,19 @@ public class CaptionDbTester {
 		CaptionWorkflow workflow = new CaptionWorkflow();
 		boolean isSaved = workflow.saveByStatefull(mission);
 		assertNotNull("Mission is not saved.", isSaved);
+	}
+	
+	@Test
+	public void visionGetTest() throws Exception {
+		CaptionWorkflow workflow = new CaptionWorkflow();
+		Vision vision = workflow.getVision();
+		assertNotNull("Vision is null.", vision);
+	}
+	
+	@Test
+	public void missionGetTest() throws Exception {
+		CaptionWorkflow workflow = new CaptionWorkflow();
+		Mission mission = workflow.getMission();
+		assertNotNull("Mission is null.", mission);
 	}
 }
