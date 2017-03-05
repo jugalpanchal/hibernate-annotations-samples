@@ -34,7 +34,6 @@ public class Repository<T extends PersistentEntity> {
 		List<T> persistentEntities = null;
 		try {
 			//persistentEntities = (T)statefullSession.get(T);
-
 		} catch (Exception ex) {
 			throw ex;
 		}

@@ -1,4 +1,4 @@
-package com.jugalpanchal.hibernate.test;
+package com.jugalpanchal.db.test;
 
 import static org.junit.Assert.*;
 

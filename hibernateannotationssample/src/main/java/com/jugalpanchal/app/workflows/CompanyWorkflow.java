@@ -1,4 +1,4 @@
-package com.jugalpanchal.db.workflows;
+package com.jugalpanchal.app.workflows;
 
 import java.util.List;
 

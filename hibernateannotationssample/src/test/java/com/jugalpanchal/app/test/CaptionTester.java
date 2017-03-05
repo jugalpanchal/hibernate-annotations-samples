@@ -1,4 +1,4 @@
-package com.jugalpanchal.hibernate.test;
+package com.jugalpanchal.app.test;
 
 import static org.junit.Assert.*;
 
@@ -7,20 +7,20 @@ import java.util.Date;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.jugalpanchal.app.workflows.CaptionWorkflow;
+import com.jugalpanchal.app.workflows.UserWorkflow;
 import com.jugalpanchal.db.entities.Mission;
 import com.jugalpanchal.db.entities.User;
 import com.jugalpanchal.db.entities.Vision;
-import com.jugalpanchal.db.workflows.CaptionWorkflow;
-import com.jugalpanchal.db.workflows.UserWorkflow;
 
-public class CaptionDbTester {
+public class CaptionTester {
 
 	private static User USER;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		UserWorkflow workflow = new UserWorkflow();
-		CaptionDbTester.USER = workflow.get(1L);
+		CaptionTester.USER = workflow.get(1L);
 	}
 	
 	@Test

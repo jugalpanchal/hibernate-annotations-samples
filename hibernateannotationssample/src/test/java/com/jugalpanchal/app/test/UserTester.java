@@ -1,4 +1,4 @@
-package com.jugalpanchal.hibernate.test;
+package com.jugalpanchal.app.test;
 
 import static org.junit.Assert.*;
 
@@ -8,10 +8,10 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.jugalpanchal.app.workflows.UserWorkflow;
 import com.jugalpanchal.db.entities.User;
-import com.jugalpanchal.db.workflows.UserWorkflow;
 
-public class UserDbTester {
+public class UserTester {
 
 	private static User USER;
 	
@@ -27,7 +27,7 @@ public class UserDbTester {
 	@Test
 	public void saveUser() throws Exception {
 
-		User user = new User(UserDbTester.USER, new Date(), "Jugal");
+		User user = new User(UserTester.USER, new Date(), "Jugal");
 		UserWorkflow workflow = new UserWorkflow();
 		Boolean isSaved = workflow.saveByStatefull(user);
 		assertTrue("User is saved.", isSaved);

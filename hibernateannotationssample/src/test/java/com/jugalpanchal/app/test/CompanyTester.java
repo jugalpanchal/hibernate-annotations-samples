@@ -1,4 +1,4 @@
-package com.jugalpanchal.hibernate.test;
+package com.jugalpanchal.app.test;
 
 import static org.junit.Assert.*;
 
@@ -10,6 +10,8 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.jugalpanchal.app.workflows.CompanyWorkflow;
+import com.jugalpanchal.app.workflows.UserWorkflow;
 import com.jugalpanchal.db.entities.Car;
 import com.jugalpanchal.db.entities.Company;
 import com.jugalpanchal.db.entities.Model;
@@ -17,10 +19,8 @@ import com.jugalpanchal.db.entities.User;
 import com.jugalpanchal.db.framework.Fixture;
 import com.jugalpanchal.db.framework.StatefullUnitOfWork;
 import com.jugalpanchal.db.repositories.CompanyRepository;
-import com.jugalpanchal.db.workflows.CompanyWorkflow;
-import com.jugalpanchal.db.workflows.UserWorkflow;
 
-public class CompanyDbTransactionTester {
+public class CompanyTester {
 
 	private static User USER;
 	
