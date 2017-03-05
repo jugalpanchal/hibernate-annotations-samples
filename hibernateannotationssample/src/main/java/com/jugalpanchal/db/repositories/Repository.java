@@ -3,7 +3,7 @@ package com.jugalpanchal.db.repositories;
 import org.hibernate.Session;
 import com.jugalpanchal.db.entities.PersistentEntity;
 
-public class Repository<T extends PersistentEntity> {
+public abstract class Repository<T extends PersistentEntity> {
 	
 	protected Session statefullSession;
 

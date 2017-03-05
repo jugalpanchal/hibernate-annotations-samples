@@ -16,7 +16,7 @@ import com.jugalpanchal.db.contracts.IPersistentEntity;
 import com.jugalpanchal.db.contracts.IUser;
 
 @MappedSuperclass
-public class PersistentEntity implements IPersistentEntity, IActivateEntity {
+public abstract class PersistentEntity implements IPersistentEntity, IActivateEntity {
 
 	@Id
 	@GeneratedValue
